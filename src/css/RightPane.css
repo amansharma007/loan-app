@@ -1,0 +1,31 @@
+#main-container {
+    margin: 30px;
+}
+
+.bg-grey {
+    background: #eef1f6;
+}
+
+.bg-purple {
+    background: #324157;
+    color: #eef1f6;
+}
+
+.content-block {
+    padding: 20px;
+    margin: 10px;
+    min-height: 400px;
+}
+
+#results-section {
+    text-align: center;
+}
+
+.big-text {
+    font-size: 4rem;
+}
+
+.results-wrapper{
+    margin: 35px;
+}
+
