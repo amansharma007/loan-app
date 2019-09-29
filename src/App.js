@@ -4,12 +4,15 @@ import { Layout, Menu } from 'element-react';
 import History from './components/History';
 import Calculator from './components/Calculator';
 import axios from 'axios';
+import uuid from 'uuid';
 
 class App extends Component{
 
   state = {
     isLoading: true,
-    loanDetails : {}
+    loanDetails : {},
+    history: [],
+    selectedId: null
   }
 
   getData = (type, val) => {
@@ -23,12 +26,54 @@ class App extends Component{
     console.log("You will get your data when you use axios.", val, type);
   }
 
-  componentWillMount(){
-    
+  addHistory = () => {
+    this.setState(state => {
+      let lD = state.loanDetails;
+      lD.id = uuid.v4();
+      const arr = state.history.concat(lD);
+      return {
+        isLoading: false,
+        loanDetails: state.loanDetails,
+        history: arr
+      }
+    })
   }
 
-  componentWillUpdate(){
-    // Set the local storage here, before the state is updated
+  changeState = (newDetails) => {
+    this.setState({selectedId: newDetails.id});
+    this.setState({loanDetails: newDetails});
+  }
+
+  resetEverything = () => {
+    let dummyState= {
+      interestRate: 0.25,
+      monthlyPayment: {
+        amount: 93,
+        currency: "USD"
+      },
+      numPayments: 6,
+      principal: {
+        amount: 500,
+        currency: "USD"
+      }
+    }
+    //Push current loanDetails to the history array
+    this.addHistory()
+    //Resetting the whole state
+    this.setState({ isLoading: false, loanDetails: dummyState });
+  }
+
+  componentWillMount(){
+    if(localStorage.getItem('loanHistory')){
+      this.setState({
+        history: JSON.parse(localStorage.getItem('loanHistory'))
+      })
+    }
+  }
+
+  componentWillUpdate(nextProps, nextState){
+    // Update the local storage here with the server fetched data, before the state is updated
+    localStorage.setItem('loanHistory', JSON.stringify(nextState.history));
   }
 
   componentDidMount(){
@@ -47,9 +92,11 @@ class App extends Component{
           </Layout.Col>
         </Layout.Row>
         <Layout.Row>
-          <Layout.Col span="4" className="left-pane"><History /></Layout.Col>
+          <Layout.Col span="4" className="left-pane">
+            <History data={this.state.history} selectedId={this.state.selectedId} changeState={this.changeState}/>
+          </Layout.Col>
           <Layout.Col span="20" className="right-pane">
-            <Calculator getData={this.getData} data={this.state} />
+            <Calculator getData={this.getData} data={this.state} resetEverything={this.resetEverything}/>
           </Layout.Col>
         </Layout.Row>
       </div>

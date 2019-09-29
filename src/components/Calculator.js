@@ -1,18 +1,36 @@
 import React, {Component} from 'react';
 import '../css/RightPane.css'
-import { Layout, Slider, Button } from 'element-react';
+import { Layout, Button } from 'element-react';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
-class RightPane extends Component{
 
-  loadSlider = (type) => {
+class Calculator extends Component{
+
+  state = {
+    value1: 500
+  }
+
+  resetEverything = () => {
+    this.setState({value1: 500})
+    console.log("Every thing is reset.. Run!!");
+  }
+
+  amountSlider = () => {
     const loading = this.props.data.isLoading;
-    const min = (type === 'amount') ? 500 : 6;
-    const max = (type === 'month') ? 24 : 5000;
-    
     if(loading){
-      return <Slider min={min} max={max} onChange={this.props.getData.bind(this, type)} />
+      return <Slider min={500} max={5000} value={500} onChange={this.props.getData.bind(this, 'amount')} />
     } else {
-      return <Slider min={min} max={max} value={(type === 'amount') ? (this.props.data.loanDetails.principal.amount) : (this.props.data.loanDetails.numPayments)} onChange={this.props.getData.bind(this, type)} />
+      return <Slider min={500} max={5000} value={this.props.data.loanDetails.principal.amount} onChange={this.props.getData.bind(this, 'amount')} />
+    }
+  }
+
+  monthSlider = () => {
+    const loading = this.props.data.isLoading;
+    if(loading){
+      return <Slider min={6} max={24} value={6} onChange={this.props.getData.bind(this, 'month')} />
+    } else {
+      return <Slider min={6} max={24} value={this.props.data.loanDetails.numPayments} onChange={this.props.getData.bind(this, 'month')} />
     }
   }
 
@@ -26,16 +44,17 @@ class RightPane extends Component{
                     <h2>Loan Amount</h2>
                     <div className="block">
                       <span className="demonstration">Slide and select the total Loan Amount</span>
-                      {this.loadSlider('amount')}
-                      {/* <Slider min={500} max={5000} value={(!isLoading) ? (loanDetails.principal.amount) : 0} onChange={this.props.getData.bind(this, 'amount')} /> */}
+                      {/* <pre>{this.state.value1}</pre> */}
+                      {this.amountSlider()}
+                      {/* <Slider min={500} max={5000} value={this.state.value1} onChange={(val) => {this.setState({value1: val})}} /> */}
                     </div>
                     <h2>Loan Duration</h2>
                     <div className="block">
                       <span className="demonstration">Slide and select the Duration for which you want to take the loan.</span>
-                      {this.loadSlider('month')}
+                      {this.monthSlider()}
                       {/* <Slider min={6} max={24} value={(!isLoading) ? loanDetails.numPayments : 0} onChange={this.props.getData.bind(this, 'month')} /> */}
                     </div>
-                    <Button type="primary" style={{borderRadius: 0}}>RESET</Button>
+                    <Button type="primary" onClick={this.props.resetEverything.bind(this)} style={{borderRadius: 0}}>RESET</Button>
                     <br /><br />
                     <sup><em>Current selection will be saved in History on Reset.</em></sup>
                 </div>
@@ -63,4 +82,4 @@ class RightPane extends Component{
   }
 }
 
-export default RightPane;
+export default Calculator;
