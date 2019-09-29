@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Loan App (React)
+
+This is a Loan App built using React. Checkout [Live Demo](https://amansharma007.github.io/loan-app)
 
 ## Available Scripts
 
