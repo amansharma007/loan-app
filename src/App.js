@@ -23,7 +23,6 @@ class App extends Component{
       axios.get(`https://ftl-frontend-test.herokuapp.com/interest?amount=${this.state.loanDetails.principal.amount}&numMonths=${val}`)
       .then(res => this.setState({ isLoading: false, loanDetails: res.data }))
     }
-    console.log("You will get your data when you use axios.", val, type);
   }
 
   addHistory = () => {
@@ -61,9 +60,11 @@ class App extends Component{
     this.addHistory()
     //Resetting the whole state
     this.setState({ isLoading: false, loanDetails: dummyState });
+    this.setState({selectedId: null});
   }
 
   componentWillMount(){
+    //Check if there is already 'loanHistory' present in the local storage. If present, update the state accordingly.
     if(localStorage.getItem('loanHistory')){
       this.setState({
         history: JSON.parse(localStorage.getItem('loanHistory'))
@@ -84,6 +85,7 @@ class App extends Component{
   render() {
     return (
       <div className="App">
+        
         <Layout.Row>
           <Layout.Col span="24">
             <Menu theme="dark" className="el-menu-demo" mode="horizontal">
@@ -91,14 +93,17 @@ class App extends Component{
             </Menu>
           </Layout.Col>
         </Layout.Row>
+
         <Layout.Row>
           <Layout.Col span="4" className="left-pane">
             <History data={this.state.history} selectedId={this.state.selectedId} changeState={this.changeState}/>
           </Layout.Col>
+
           <Layout.Col span="20" className="right-pane">
             <Calculator getData={this.getData} data={this.state} resetEverything={this.resetEverything}/>
           </Layout.Col>
         </Layout.Row>
+
       </div>
     );
   }

@@ -7,15 +7,6 @@ import 'rc-slider/assets/index.css';
 
 class Calculator extends Component{
 
-  state = {
-    value1: 500
-  }
-
-  resetEverything = () => {
-    this.setState({value1: 500})
-    console.log("Every thing is reset.. Run!!");
-  }
-
   amountSlider = () => {
     const loading = this.props.data.isLoading;
     if(loading){
@@ -39,26 +30,29 @@ class Calculator extends Component{
     return (
       <div id="main-container">
           <Layout.Row>
+
               <Layout.Col span="16">
                 <div className="bg-grey content-block">
                     <h2>Loan Amount</h2>
                     <div className="block">
                       <span className="demonstration">Slide and select the total Loan Amount</span>
-                      {/* <pre>{this.state.value1}</pre> */}
+                      <br/>
+                      <span className="demonstration"><strong>Loan Amount:</strong> ${(!this.props.data.isLoading) ? this.props.data.loanDetails.principal.amount : 500}</span>
                       {this.amountSlider()}
-                      {/* <Slider min={500} max={5000} value={this.state.value1} onChange={(val) => {this.setState({value1: val})}} /> */}
                     </div>
                     <h2>Loan Duration</h2>
                     <div className="block">
                       <span className="demonstration">Slide and select the Duration for which you want to take the loan.</span>
+                      <br/>
+                      <span className="demonstration"><strong>Loan Duration:</strong> {(!this.props.data.isLoading) ? this.props.data.loanDetails.numPayments : 6} Months</span>
                       {this.monthSlider()}
-                      {/* <Slider min={6} max={24} value={(!isLoading) ? loanDetails.numPayments : 0} onChange={this.props.getData.bind(this, 'month')} /> */}
                     </div>
                     <Button type="primary" onClick={this.props.resetEverything.bind(this)} style={{borderRadius: 0}}>RESET</Button>
                     <br /><br />
                     <sup><em>Current selection will be saved in History on Reset.</em></sup>
                 </div>
               </Layout.Col>
+
               <Layout.Col span="8">
                 <div id="results-section" className="bg-purple content-block">
                     <div className="results-wrapper">
@@ -76,6 +70,7 @@ class Calculator extends Component{
                     </div>
                 </div>
               </Layout.Col>
+
           </Layout.Row>
       </div>
     );
