@@ -57,7 +57,9 @@ class App extends Component{
       }
     }
     //Push current loanDetails to the history array
-    this.addHistory()
+    if(!this.state.selectedId){
+      this.addHistory()
+    }
     //Resetting the whole state
     this.setState({ isLoading: false, loanDetails: dummyState });
     this.setState({selectedId: null});
