@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "./static/css/main.b8eb4a26.chunk.css",
-    "main.js": "./static/js/main.119ef887.chunk.js",
-    "main.js.map": "./static/js/main.119ef887.chunk.js.map",
-    "runtime-main.js": "./static/js/runtime-main.743c7f47.js",
-    "runtime-main.js.map": "./static/js/runtime-main.743c7f47.js.map",
-    "static/css/2.d83549e8.chunk.css": "./static/css/2.d83549e8.chunk.css",
-    "static/js/2.33f009f8.chunk.js": "./static/js/2.33f009f8.chunk.js",
-    "static/js/2.33f009f8.chunk.js.map": "./static/js/2.33f009f8.chunk.js.map",
-    "index.html": "./index.html",
-    "precache-manifest.aeafc1c4a71fe3f0b881ef9ac6ae5a18.js": "./precache-manifest.aeafc1c4a71fe3f0b881ef9ac6ae5a18.js",
-    "service-worker.js": "./service-worker.js",
-    "static/css/2.d83549e8.chunk.css.map": "./static/css/2.d83549e8.chunk.css.map",
-    "static/css/main.b8eb4a26.chunk.css.map": "./static/css/main.b8eb4a26.chunk.css.map",
-    "static/media/index.css": "./static/media/element-icons.d2f69a92.woff"
+    "main.css": "/static/css/main.b8eb4a26.chunk.css",
+    "main.js": "/static/js/main.4c330a6c.chunk.js",
+    "main.js.map": "/static/js/main.4c330a6c.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.743c7f47.js",
+    "runtime-main.js.map": "/static/js/runtime-main.743c7f47.js.map",
+    "static/css/2.d83549e8.chunk.css": "/static/css/2.d83549e8.chunk.css",
+    "static/js/2.33f009f8.chunk.js": "/static/js/2.33f009f8.chunk.js",
+    "static/js/2.33f009f8.chunk.js.map": "/static/js/2.33f009f8.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.3eebcd2e452b788b3b941ca72465a53f.js": "/precache-manifest.3eebcd2e452b788b3b941ca72465a53f.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.d83549e8.chunk.css.map": "/static/css/2.d83549e8.chunk.css.map",
+    "static/css/main.b8eb4a26.chunk.css.map": "/static/css/main.b8eb4a26.chunk.css.map",
+    "static/media/index.css": "/static/media/element-icons.d2f69a92.woff"
   }
 }
